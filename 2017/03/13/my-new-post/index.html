@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="自己从网上摘录的一些文章，用于大家搜索解决问题以及自己存档。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="个人简历">
+<meta property="og:title" content="iOS9.0适配">
 <meta property="og:url" content="http://yoursite.com/2017/03/13/my-new-post/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta property="og:updated_time" content="2017-03-13T07:59:05.000Z">
+<meta property="og:description" content="自己从网上摘录的一些文章，用于大家搜索解决问题以及自己存档。">
+<meta property="og:updated_time" content="2017-03-14T01:27:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="个人简历">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="iOS9.0适配">
+<meta name="twitter:description" content="自己从网上摘录的一些文章，用于大家搜索解决问题以及自己存档。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>个人简历 | Hexo</title>
+<title>iOS9.0适配 | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -263,7 +263,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      个人简历
+      iOS9.0适配
     </h1>
   
 
@@ -280,9 +280,54 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in="" index="" |="" 首页摘要=""><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
-</the>
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>自己从网上摘录的一些文章，用于大家搜索解决问题以及自己存档。<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h3 id="网络适配由http改成https"><a href="#网络适配由http改成https" class="headerlink" title="网络适配由http改成https"></a>网络适配由http改成https</h3><p>目前都支持https,但仍然有些公司不支持，故且看之。<br>方案一：让服务器更新。</p>
+<pre><code>第一种方案是最佳的，因为使用http的话，会存在以下主要风险：
+
+1、窃听风险：第三方可以获得通信内容。
+
+2、篡改风险：第三方可以修改通信内容。
+
+3、冒充风险：第三方可以冒充他人来进行通信。
+
+而使用https所带给我们的好处如下：
+
+1、所有信息都是加密传播，第三方无法窃取。
+
+2、具有校验机制，一旦通信内容被篡改，通信双方可以立即发现。
+
+3、配备身份证书，防止他人冒充。
+
+但是就目前情况来看，让服务器更新的代价太大，大的公司应该很大可能会让服务器更新，一般公司会采用第二种方案。
+</code></pre><p>方案二：暂时倒回到不安全的网络传输协议(http协议)</p>
+<pre><code>（1）、在info.plist中增加一个NSAppTransportSecurity字段，类型是字典。
+
+（2）、然后给其增加一个Key：NSAllowsArbitraryLoads，类型是Boolean类型，值为YES。
+</code></pre><p>方案三：设置域（把把不支持https协议的接口设置成http的接口）</p>
+<pre><code>（1）、在info.plist中增加一个key：NSAppTransportSecurity，类型为字典类型。
+
+（2）、然后添加一个NSExceptionDomains，其类型是字典类型。
+
+（3）、把需要支持的域给添加到NSExceptionDomains里，其中域作为key，类型为字典类型。
+
+（4）、每个域下面需要设置3个属性，分别为NSIncludesSubdomains、NSExceptionRequiresForwardSecrecy、NSExceptionAllowsInsecureHTTPLoads，均为Boolean类型，其值分别为YES，NO，YES。技术分享
+
+新浪微博的域：weibo.com、weibo.cn、sina.com.cn。微信的域：qq.com。QQ/QZone的域：qq.com
+</code></pre><h3 id="Bitcode"><a href="#Bitcode" class="headerlink" title="Bitcode"></a>Bitcode</h3><p>Bitcode是被编译程序的一种中间形式的代码。包含Bitcode配置的应用将在App Store上被编译和链接。Bitcode允许苹果在后期重新优化我们应用的二进制文件，而不需要我们重新提交一个版本到App Store上。<br>如果用Xcode7创建的app默认是包含有bitcode，但是是可以选择的。如果，我们的app包含了bitcode，我们工程中所有的第三方sdk必须也得支持bitcode，否则的话，就会报错误的。<br>解决这个错误，有两种方案：<br>    方案一：把不支持Bitcode的SDK给移除掉，等待第三方更新SDK。而目前大部分社交平台的SDK并不支持Bitcode。<br>    方案二：把Bitcode给关闭掉</p>
+<h3 id="Scheme白名单"><a href="#Scheme白名单" class="headerlink" title="Scheme白名单"></a>Scheme白名单</h3><p>从iOS9.0后，涉及到平台客户端的跳转，系统会自动到info.plist下检查是否设置Scheme。如果没有做相应的配置，就无法跳转到相应的客户端。因此如果客户端集成有分享与授权，需要配置Scheme白名单。<br>    解决方案：<br>    （1）、在info.plist增加key：LSApplicationQueriesSchemes，类型为NSArray。<br>    （2）、添加需要支持的白名单，类型为String。<br>新浪微博白名单：sinaweibo、sinaweibohd、sinaweibosso、sinaweibohdsso、weibosdk、weibosdk2.5。</p>
+<pre><code>微信白名单：wechat、weixin。
+
+支付宝白名单：alipay、alipayshare。
+
+QQ与QQ空间白名单：mqzoneopensdk、mqzoneopensdkapi、mqzoneopensdkapi19、mqzoneopensdkapiV2、mqqOpensdkSSoLogin、mqqopensdkapiV2、mqqopensdkapiV3、wtloginmqq2、mqqapi、mqqwpa、mqzone、mqq。
+
+另外，如果应用使用了检测是否安装了某款app，我们会调用canOpenURL， 如果url不在白名单中，即使手机上有这款app，也会返回NO。
+
+补充：在使用sharesdk进行分享的时候，如果你设置有微信、QQ、QQ空间分享，并且你也把相应的白名单给添加进去了，但是如果你手机上没有装QQ的时候，也是不会出现分享到QQ的选项。
+</code></pre><h3 id="iPad适配Slide-Over和Split-View"><a href="#iPad适配Slide-Over和Split-View" class="headerlink" title="iPad适配Slide Over和Split View"></a>iPad适配Slide Over和Split View</h3><p>若想适配multi tasking特性，建议不使用纯代码，改用storyboard、xib的形式。</p>
+<p>补充，本文所说的都是iOS9.0SDK的新特性，如果你的app版本是基于iOS8.X、iOS7.X，并不受iOS9.0新特性约束。也就是说Xcode7给iOS8.X打设备包不需要白名单也能调用canOpenURL，但是Xcode7给iOS9.X打包则需要，Xcode7和iOS9缺一不可。</p>
+
       
     </div>
     
@@ -290,12 +335,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/03/13/my-new-post/">个人简历</a></p>
+        <p><span>本文标题:</span><a href="/2017/03/13/my-new-post/">iOS9.0适配</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">jianqingyu</a></p>
         <p><span>发布时间:</span>2017-03-13, 15:25:48</p>
-        <p><span>最后更新:</span>2017-03-13, 15:59:05</p>
+        <p><span>最后更新:</span>2017-03-14, 09:27:56</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/03/13/my-new-post/" title="个人简历">http://yoursite.com/2017/03/13/my-new-post/</a>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/13/my-new-post/" title="iOS9.0适配">http://yoursite.com/2017/03/13/my-new-post/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/13/my-new-post/　　作者: jianqingyu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -323,7 +368,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络适配由http改成https"><span class="toc-number">1.</span> <span class="toc-text">网络适配由http改成https</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bitcode"><span class="toc-number">2.</span> <span class="toc-text">Bitcode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheme白名单"><span class="toc-number">3.</span> <span class="toc-text">Scheme白名单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iPad适配Slide-Over和Split-View"><span class="toc-number">4.</span> <span class="toc-text">iPad适配Slide Over和Split View</span></a></li></ol>
         
     </div>
     <style>
@@ -359,7 +404,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"个人简历　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"iOS9.0适配　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -375,7 +420,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/13/my-new-post/" data-title="个人简历" data-url="http://yoursite.com/2017/03/13/my-new-post/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/13/my-new-post/" data-title="iOS9.0适配" data-url="http://yoursite.com/2017/03/13/my-new-post/"></div>
     <script>
         var duoshuoQuery = {short_name:"jianqing"};
         var loadComment = function(){
@@ -410,7 +455,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/my-new-post/">个人简历</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/my-new-post/">iOS9.0适配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/hello-world/">Hello World</a></li></ul>
 
 
 
