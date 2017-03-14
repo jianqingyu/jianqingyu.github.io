@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://github.com/jianqingyu/blogImg/raw/master/03.png">
 <meta property="og:image" content="https://github.com/jianqingyu/blogImg/raw/master/04.png">
 <meta property="og:image" content="https://github.com/jianqingyu/blogImg/raw/master/05.png">
-<meta property="og:updated_time" content="2017-03-14T03:10:34.000Z">
+<meta property="og:updated_time" content="2017-03-14T03:21:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 开发新建 Pch 文件">
 <meta name="twitter:description" content="Xcode6之前，创建一个新工程xcode会在Supporting files文件夹下面自动创建一个“工程名-Prefix.pch”文件，也是一个头文件，pch头文件的内容能被项目中的其他所有源文件共享和访问。是一个预编译文件。">
@@ -288,8 +288,8 @@
           
         <p><excerpt in="" index="" |="" 首页摘要=""><br>Xcode6之前，创建一个新工程xcode会在Supporting files文件夹下面自动创建一个“工程名-Prefix.pch”文件，也是一个头文件，pch头文件的内容能被项目中的其他所有源文件共享和访问。是一个预编译文件。<br><a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<h3 id="首先说一下pch的作用："><a href="#首先说一下pch的作用：" class="headerlink" title="首先说一下pch的作用："></a>首先说一下pch的作用：</h3><p>   1.存放一些全局的宏(整个项目中都用得上的宏)<br>   2.用来包含一些全部的头文件(整个项目中都用得上的头文件)<br>   3.能自动打开或者关闭日志输出功能<br>   苹果为什么要这么删除pct文件呢，原因可能是因为大家把大量的头文件和宏定义放到pch里边，导致编译时间过长。<br>   苹果去掉他可能是要加快编译时间增加用户体验，虽然失去了编程的便利性。更详细的讨论可以去Stackoverflow上<br>   去看<a href="http://stackoverflow.com/questions/24158648/why-isnt-projectname-prefix-pch-" target="_blank" rel="external">http://stackoverflow.com/questions/24158648/why-isnt-projectname-prefix-pch-</a><br>   created-automatically-in-xcode-6。</p>
-<h3 id="如何在Xcode中添加pch文件："><a href="#如何在Xcode中添加pch文件：" class="headerlink" title="如何在Xcode中添加pch文件："></a>如何在Xcode中添加pch文件：</h3><p>   1.Command+N，打开新建文件窗口：ios-&gt;other-&gt;PCH file，创建一个pch文件<br><img src="https://github.com/jianqingyu/blogImg/raw/master/01.png" alt="image"><br>   2.在工程的TARGETS里边Building Setting中搜索Prefix Header，然后把Precompile Prefix Header右边的NO改为Yes：将Precompile Prefix Header为YES，预编译后的pch文件会被缓存起来，可以提高编译速度<br><img src="https://github.com/jianqingyu/blogImg/raw/master/02.png" alt="image"><br>   3.然后在Precompile Prefix Header下边的Prefix Header右边双击，添加刚刚创建的pch文件的工程路径，添加格式：“$(SRCROOT)/项目名称/pch文件名” ，<br><img src="https://github.com/jianqingyu/blogImg/raw/master/03.png" alt="image"><br>   $(SRCROOT)的意思就是工程根目录的意思。如果还不太清楚的话可以右键pch文件，然后show in finder：<br><img src="https://github.com/jianqingyu/blogImg/raw/master/04.png" alt="image"><br>   然后后边还有一个SocketTest和pch两个文件夹，所以完整的pch文件的路径就是：$(SRCROOT)/SocketTest/pch<br><img src="https://github.com/jianqingyu/blogImg/raw/master/05.png" alt="image"><br>添加完成后，他会自动帮你变成你工程所在的路径：<br>可以了，编译一下程序，就可以把一些文件的头文件，宏定义放进去了。</p>
+<h3 id="首先说一下pch的作用："><a href="#首先说一下pch的作用：" class="headerlink" title="首先说一下pch的作用："></a>首先说一下pch的作用：</h3><p>   1.存放一些全局的宏(整个项目中都用得上的宏)<br>   2.用来包含一些全部的头文件(整个项目中都用得上的头文件)<br>   3.能自动打开或者关闭日志输出功能<br>   苹果为什么要这么删除pch文件呢，原因可能是因为大家把大量的头文件和宏定义放到pch里边，导致编译时间过长。<br>   苹果去掉他可能是要加快编译时间增加用户体验，虽然失去了编程的便利性。更详细的讨论可以去Stackoverflow上<br>   去看<a href="http://stackoverflow.com/questions/24158648/why-isnt-projectname-prefix-pch-" target="_blank" rel="external">http://stackoverflow.com/questions/24158648/why-isnt-projectname-prefix-pch-</a><br>created-automatically-in-xcode-6。</p>
+<h3 id="如何在Xcode中添加pch文件："><a href="#如何在Xcode中添加pch文件：" class="headerlink" title="如何在Xcode中添加pch文件："></a>如何在Xcode中添加pch文件：</h3><p>   1.Command+N，打开新建文件窗口：iOS-&gt;other-&gt;PCH file，创建一个pch文件<br><img src="https://github.com/jianqingyu/blogImg/raw/master/01.png" alt="image"><br>   2.在工程的TARGETS里边Building Setting中搜索Prefix Header，然后把Precompile Prefix Header右边的NO改为Yes：将Precompile Prefix Header为YES，预编译后的pch文件会被缓存起来，可以提高编译速度<br><img src="https://github.com/jianqingyu/blogImg/raw/master/02.png" alt="image"><br>   3.然后在Precompile Prefix Header下边的Prefix Header右边双击，添加刚刚创建的pch文件的工程路径，添加格式：“$(SRCROOT)/项目名称/pch文件名” ，<br><img src="https://github.com/jianqingyu/blogImg/raw/master/03.png" alt="image"><br>   $(SRCROOT)的意思就是工程根目录的意思。如果还不太清楚的话可以右键pch文件，然后show in finder：<br><img src="https://github.com/jianqingyu/blogImg/raw/master/04.png" alt="image"><br>   然后后边还有一个SocketTest文件夹，所以完整的pch文件的路径就是：$(SRCROOT)/SocketTest/pch文件<br><img src="https://github.com/jianqingyu/blogImg/raw/master/05.png" alt="image"><br>添加完成后，他会自动帮你变成你工程所在的路径：<br>可以了，编译一下程序，就可以把一些文件的头文件，宏定义放进去了。</p>
 
       
     </div>
@@ -301,7 +301,7 @@
         <p><span>本文标题:</span><a href="/2017/03/13/iOS新建pch/">iOS 开发新建 Pch 文件</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">jianqingyu</a></p>
         <p><span>发布时间:</span>2017-03-13, 15:25:48</p>
-        <p><span>最后更新:</span>2017-03-14, 11:10:34</p>
+        <p><span>最后更新:</span>2017-03-14, 11:21:24</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/03/13/iOS新建pch/" title="iOS 开发新建 Pch 文件">http://yoursite.com/2017/03/13/iOS新建pch/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/13/iOS新建pch/　　作者: jianqingyu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
