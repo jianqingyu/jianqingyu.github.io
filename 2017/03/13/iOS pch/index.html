@@ -15,12 +15,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta name="description" content="Xcode6之前，创建一个新工程xcode会在Supporting files文件夹下面自动创建一个“工程名-Prefix.pch”文件，也是一个头文件，pch头文件的内容能被项目中的其他所有源文件共享和访问。是一个预编译文件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 开发新建 Pch 文件">
+<meta property="og:url" content="http://yoursite.com/2017/03/13/iOS pch/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Xcode6之前，创建一个新工程xcode会在Supporting files文件夹下面自动创建一个“工程名-Prefix.pch”文件，也是一个头文件，pch头文件的内容能被项目中的其他所有源文件共享和访问。是一个预编译文件。">
+<meta property="og:image" content="https://github.com/jianqingyu/blogImg/blob/master/01.png">
+<meta property="og:image" content="https://github.com/jianqingyu/blogImg/blob/master/02.png">
+<meta property="og:image" content="https://github.com/jianqingyu/blogImg/blob/master/03.png">
+<meta property="og:image" content="https://github.com/jianqingyu/blogImg/blob/master/04.png">
+<meta property="og:image" content="https://github.com/jianqingyu/blogImg/blob/master/05.png">
+<meta property="og:updated_time" content="2017-03-14T03:02:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="iOS 开发新建 Pch 文件">
+<meta name="twitter:description" content="Xcode6之前，创建一个新工程xcode会在Supporting files文件夹下面自动创建一个“工程名-Prefix.pch”文件，也是一个头文件，pch头文件的内容能被项目中的其他所有源文件共享和访问。是一个预编译文件。">
+<meta name="twitter:image" content="https://github.com/jianqingyu/blogImg/blob/master/01.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -52,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2017 | Hexo</title>
+<title>iOS 开发新建 Pch 文件 | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -62,8 +72,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -240,110 +250,182 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-iOS pch" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2017/03/13/iOS pch/" class="article-date">
+      <time datetime="2017-03-13T07:25:48.000Z" itemprop="datePublished">2017-03-13</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS 开发新建 Pch 文件
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/13/iOS pch/" class="archive-article-date">
-      <time datetime="2017-03-13T07:25:48.000Z" itemprop="datePublished">03-13</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/13/iOS pch/">iOS 开发新建 Pch 文件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>Xcode6之前，创建一个新工程xcode会在Supporting files文件夹下面自动创建一个“工程名-Prefix.pch”文件，也是一个头文件，pch头文件的内容能被项目中的其他所有源文件共享和访问。是一个预编译文件。<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h3 id="首先说一下pch的作用："><a href="#首先说一下pch的作用：" class="headerlink" title="首先说一下pch的作用："></a>首先说一下pch的作用：</h3><p>1.存放一些全局的宏(整个项目中都用得上的宏)<br>2.用来包含一些全部的头文件(整个项目中都用得上的头文件)<br>3.能自动打开或者关闭日志输出功能<br>苹果为什么要这么删除pct文件呢，原因可能是因为大家把大量的头文件和宏定义放到pch里边，导致编译时间过长。苹果去掉他可能是要加快编译时间增加用户体验，虽然失去了编程的便利性。更详细的讨论可以去Stackoverflow上去看<a href="http://stackoverflow.com/questions/24158648/why-isnt-projectname-prefix-pch-created-automatically-in-xcode-6。" target="_blank" rel="external">http://stackoverflow.com/questions/24158648/why-isnt-projectname-prefix-pch-created-automatically-in-xcode-6。</a></p>
+<p>###如何在Xcode中添加pch文件：<br>1.Command+N，打开新建文件窗口：ios-&gt;other-&gt;PCH file，创建一个pch文件<br><img src="https://github.com/jianqingyu/blogImg/blob/master/01.png" alt="image"><br>2.在工程的TARGETS里边Building Setting中搜索Prefix Header，然后把Precompile Prefix Header右边的NO改为Yes：将Precompile Prefix Header为YES，预编译后的pch文件会被缓存起来，可以提高编译速度<br><img src="https://github.com/jianqingyu/blogImg/blob/master/02.png" alt="image"><br>3.然后在Precompile Prefix Header下边的Prefix Header右边双击，添加刚刚创建的pch文件的工程路径，添加格式：“$(SRCROOT)/项目名称/pch文件名” ，<br><img src="https://github.com/jianqingyu/blogImg/blob/master/03.png" alt="image"><br>$(SRCROOT)的意思就是工程根目录的意思。如果还不太清楚的话可以右键pch文件，然后show in finder：<br><img src="https://github.com/jianqingyu/blogImg/blob/master/04.png" alt="image"><br>然后后边还有一个SocketTest和pch两个文件夹，所以完整的pch文件的路径就是：$(SRCROOT)/SocketTest/pch<br><img src="https://github.com/jianqingyu/blogImg/blob/master/05.png" alt="image"><br>添加完成后，他会自动帮你变成你工程所在的路径：<br>可以了，编译一下程序，就可以把一些文件的头文件，宏定义放进去了。</p>
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/13/iOS pch/">iOS 开发新建 Pch 文件</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">jianqingyu</a></p>
+        <p><span>发布时间:</span>2017-03-13, 15:25:48</p>
+        <p><span>最后更新:</span>2017-03-14, 11:02:37</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/13/iOS pch/" title="iOS 开发新建 Pch 文件">http://yoursite.com/2017/03/13/iOS pch/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/13/iOS pch/　　作者: jianqingyu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/03/13/my-new-post/">
+                    iOS9.0适配
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/13/my-new-post/" class="archive-article-date">
-      <time datetime="2017-03-13T07:25:48.000Z" itemprop="datePublished">03-13</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#首先说一下pch的作用："><span class="toc-number">1.</span> <span class="toc-text">首先说一下pch的作用：</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/13/my-new-post/">iOS9.0适配</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/13/hello-world/" class="archive-article-date">
-      <time datetime="2017-03-12T16:00:00.000Z" itemprop="datePublished">03-13</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/13/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"iOS 开发新建 Pch 文件　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
 
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/13/iOS pch/" data-title="iOS 开发新建 Pch 文件" data-url="http://yoursite.com/2017/03/13/iOS pch/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"jianqing"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/03/13/my-new-post/" title="下一篇: iOS9.0适配">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/iOS pch/">iOS 开发新建 Pch 文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/my-new-post/">iOS9.0适配</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
